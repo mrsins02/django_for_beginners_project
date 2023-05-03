@@ -2,6 +2,7 @@ from django.test import SimpleTestCase
 
 
 class HomePageTests(SimpleTestCase):
-    def get_url_exists_at_correct_location(self):
+    def test_url_exists_at_correct_location(self):
         response = self.client.get("/")
-        self.assertEqual(response.status_code, "200")
+        self.assertEqual(response.status_code, 200)
+
