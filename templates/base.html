@@ -3,7 +3,10 @@
 <html lang="en">
 
 <head>
-    <title>Zay Shop eCommerce HTML CSS Template</title>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -29,7 +32,7 @@
 
 <body>
 <!-- Start Header -->
-{#{% include "includes/header_component.html" %}#}
+{% include "includes/header_component.html" %}
 <!-- End Header -->
 
 <!-- Start Body Content -->
@@ -39,7 +42,7 @@
 
 
 <!-- Start Footer -->
-{#{% include "includes/footer_component.html" %}#}
+{% include "includes/footer_component.html" %}
 <!-- End Footer -->
 
 <!-- Start Script -->
