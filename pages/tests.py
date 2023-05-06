@@ -17,16 +17,16 @@ class HomePageTests(SimpleTestCase):
         self.assertTemplateUsed(response, "pages/home.html")
 
 
-class AboutUsPageTests(SimpleTestCase):
+class ContactUsPageTests(SimpleTestCase):
     def test_url_exists_at_correct_location(self):
-        response = self.client.get("/about-us/")
+        response = self.client.get("/contact-us/")
         self.assertEqual(response.status_code, 200)
 
     def test_url_available_by_name(self):
-        response = self.client.get(reverse("about_page"))
+        response = self.client.get(reverse("contact_us"))
         self.assertEqual(response.status_code, 200)
 
     def test_template_used(self):
-        response = self.client.get(reverse("about_page"))
+        response = self.client.get(reverse("contact_us"))
         print(response)
-        self.assertTemplateUsed(response, "pages/about_us.html")
+        self.assertTemplateUsed(response, "pages/contact-us.html")

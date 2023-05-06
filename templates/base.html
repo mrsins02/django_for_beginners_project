@@ -3,55 +3,60 @@
 <html lang="en">
 
 <head>
-    <title>
-        {% block title %}
-        {% endblock %}
-    </title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="apple-touch-icon" href="{% static "img/apple-icon.png" %}">
-    <link rel="shortcut icon" type="image/x-icon" href="{% static "img/favicon.ico" %}">
-
-    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" href="{% static "css/templatemo.css" %}">
-    <link rel="stylesheet" href="{% static "css/custom.css" %}">
-
-    <!-- Load fonts style after rendering the layout styles -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="{% static "css/fontawesome.css" %}">
-    <!--
-
-    TemplateMo 559 Zay Shop
-
-    https://templatemo.com/tm-559-zay-shop
-
-    -->
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href="{% static "img/fevicon.png" %}" type="image/png" />
+  <title>
+      {% block title %}
+      {% endblock %}
+  </title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static "css/bootstrap.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/linericon/style.css" %}" />
+  <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}" />
+  <link rel="stylesheet" href="{% static "css/themify-icons.css" %}" />
+  <link rel="stylesheet" href="{% static "css/flaticon.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/owl-carousel/owl.carousel.min.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/lightbox/simpleLightbox.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/nice-select/css/nice-select.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/animate-css/animate.css" %}" />
+  <link rel="stylesheet" href="{% static "vendors/jquery-ui/jquery-ui.css" %}" />
+  <!-- main css -->
+  <link rel="stylesheet" href="{% static "css/style.css" %}" />
+  <link rel="stylesheet" href="{% static "css/responsive.css" %}" />
 </head>
 
 <body>
-<!-- Start Header -->
-{% include "includes/header_component.html" %}
-<!-- End Header -->
+  <!--================Header Menu Area =================-->
+  {% include "includes/header_component.html" %}
+  <!--================Header Menu Area =================-->
 
-<!-- Start Body Content -->
+  <!--================ Start Body Content =================-->
 {% block body_content %}
 {% endblock %}
-<!-- End Body Content -->
+  <!--================ End Body Content =================-->
 
+  <!--================ start footer Area  =================-->
+  {%include "includes/footer_component.html"%}
+  <!--================ End footer Area  =================-->
 
-<!-- Start Footer -->
-{% include "includes/footer_component.html" %}
-<!-- End Footer -->
-
-<!-- Start Script -->
-<script src="{% static "js/jquery-1.11.0.min.js" %}"></script>
-<script src="{% static "js/jquery-migrate-1.2.1.min.js" %}"></script>
-<script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
-<script src="{% static "js/templatemo.js" %}"></script>
-<script src="{% static "js/custom.js" %}"></script>
-<!-- End Script -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="{% static "js/jquery-3.2.1.min.js" %}"></script>
+  <script src="{% static "js/popper.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/stellar.js" %}"></script>
+  <script src="{% static "vendors/lightbox/simpleLightbox.min.js" %}"></script>
+  <script src="{% static "vendors/nice-select/js/jquery.nice-select.min.js" %}"></script>
+  <script src="{% static "vendors/isotope/imagesloaded.pkgd.min.js" %}"></script>
+  <script src="{% static "vendors/isotope/isotope-min.js" %}"></script>
+  <script src="{% static "vendors/owl-carousel/owl.carousel.min.js" %}"></script>
+  <script src="{% static "js/jquery.ajaxchimp.min.js" %}"></script>
+  <script src="{% static "vendors/counter-up/jquery.waypoints.min.js" %}"></script>
+  <script src="{% static "vendors/counter-up/jquery.counterup.js" %}"></script>
+  <script src="{% static "js/mail-script.js" %}"></script>
+  <script src="{% static "js/theme.js" %}"></script>
 </body>
 
 </html>
