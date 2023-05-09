@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # external
     # internal
     'pages.apps.PagesConfig',
+    'products.apps.ProductsConfig',
 ]
 
 MIDDLEWARE = [
