@@ -49,7 +49,7 @@ class Size(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=72)
-    slug = models.SlugField(db_index=True)
+    slug = models.SlugField(db_index=True, editable=False)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
     brand = models.ForeignKey(to="Brand", on_delete=models.CASCADE)
     price = models.IntegerField(default=0)
@@ -65,7 +65,7 @@ class Product(models.Model):
         super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.category
+        return self.name
 
     class Meta:
         verbose_name = "Product"
