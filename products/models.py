@@ -3,10 +3,16 @@ from django.utils.text import slugify
 
 
 class Category(models.Model):
-    category = models.CharField(max_length=72)
+    category = models.CharField(max_length=72, unique=True)
+    slug = models.SlugField(db_index=True, editable=False)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # make a slug from category name
+        self.slug = slugify(self.category)
+        super(Category, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.category
+        return self.category.capitalize()
 
     class Meta:
         verbose_name = "Category"
@@ -14,10 +20,16 @@ class Category(models.Model):
 
 
 class Brand(models.Model):
-    brand = models.CharField(max_length=72)
+    brand = models.CharField(max_length=72, unique=True)
+    slug = models.SlugField(db_index=True, editable=False)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # make a slug from brand name
+        self.slug = slugify(self.brand)
+        super(Brand, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.brand
+        return self.brand.capitalize()
 
     class Meta:
         verbose_name = "Brand"
@@ -25,11 +37,17 @@ class Brand(models.Model):
 
 
 class Color(models.Model):
-    color_name = models.CharField(max_length=32)
-    color_code = models.CharField(max_length=32)
+    color_name = models.CharField(max_length=32, unique=True)
+    slug = models.SlugField(db_index=True, editable=False)
+    color_code = models.CharField(max_length=32, unique=True)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # make a slug from color name
+        self.slug = slugify(self.color_name)
+        super(Color, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.color_name
+        return self.color_name.capitalize()
 
     class Meta:
         verbose_name = "Color"
@@ -37,10 +55,16 @@ class Color(models.Model):
 
 
 class Size(models.Model):
-    size = models.CharField(max_length=32)
+    size = models.CharField(max_length=32, unique=True)
+    slug = models.SlugField(db_index=True, editable=False)
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        # make a slug from size
+        self.slug = slugify(self.size)
+        super(Size, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.size
+        return self.size.capitalize()
 
     class Meta:
         verbose_name = "Size"
@@ -48,16 +72,21 @@ class Size(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=72)
+    sex_choices = {
+        ("male", "Male"),
+        ("female", "Female"),
+    }
+    name = models.CharField(max_length=72, unique=True)
     slug = models.SlugField(db_index=True, editable=False)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
     brand = models.ForeignKey(to="Brand", on_delete=models.CASCADE)
-    price = models.IntegerField(default=0)
+    price = models.CharField(max_length=8, default="0")
     count = models.IntegerField(default=0)
+    sex = models.CharField(choices=sex_choices, default="male", max_length=16)
     is_available = models.BooleanField(default=True)
     description = models.TextField(blank=True, null=True)
-    size = models.ForeignKey(to="Size", on_delete=models.CASCADE)
-    color = models.ForeignKey(to="Color", on_delete=models.CASCADE)
+    size = models.ManyToManyField(to="Size")
+    color = models.ManyToManyField(to="Color")
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # make a slug from product name
@@ -65,7 +94,7 @@ class Product(models.Model):
         super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
 
     def __str__(self):
-        return self.name
+        return self.name.capitalize()
 
     class Meta:
         verbose_name = "Product"
