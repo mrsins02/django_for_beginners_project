@@ -1,11 +1,9 @@
 from django.test import TestCase
 from django.urls import reverse
-
 from .models import Product, Category, Color, Size, Brand
 
 
 class ProductTests(TestCase):
-
     @classmethod
     def setUpTestData(cls):
         cls.category = Category.objects.create(category="test category")
@@ -29,6 +27,4 @@ class ProductTests(TestCase):
         reverse_response = self.client.get(reverse("product_list"))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(reverse_response.status_code, 200)
-        self.assertTemplateUsed(reverse_response, "product-list.html")
-
-
+        self.assertTemplateUsed(reverse_response, "products/product-list.html")
