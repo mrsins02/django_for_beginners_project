@@ -36,40 +36,6 @@ class Brand(models.Model):
         verbose_name_plural = "Brands"
 
 
-class Color(models.Model):
-    color_name = models.CharField(max_length=32, unique=True)
-    slug = models.SlugField(db_index=True, editable=False)
-    color_code = models.CharField(max_length=32, unique=True)
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # make a slug from color name
-        self.slug = slugify(self.color_name)
-        super(Color, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
-
-    def __str__(self):
-        return self.color_name.capitalize()
-
-    class Meta:
-        verbose_name = "Color"
-        verbose_name_plural = "Colors"
-
-
-class Size(models.Model):
-    size = models.CharField(max_length=32, unique=True)
-    slug = models.SlugField(db_index=True, editable=False)
-
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
-        # make a slug from size
-        self.slug = slugify(self.size)
-        super(Size, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
-
-    def __str__(self):
-        return self.size.capitalize()
-
-    class Meta:
-        verbose_name = "Size"
-        verbose_name_plural = "Sizes"
-
 
 class Product(models.Model):
     sex_choices = {
@@ -80,13 +46,11 @@ class Product(models.Model):
     slug = models.SlugField(db_index=True, editable=False)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
     brand = models.ForeignKey(to="Brand", on_delete=models.CASCADE)
-    price = models.CharField(max_length=8, default="0")
-    count = models.IntegerField(default=0)
+    price = models.PositiveIntegerField(max_length=8, default="0")
+    count = models.PositiveIntegerField(default=0)
     sex = models.CharField(choices=sex_choices, default="male", max_length=16)
     is_available = models.BooleanField(default=True)
     description = models.TextField(blank=True, null=True)
-    size = models.ManyToManyField(to="Size")
-    color = models.ManyToManyField(to="Color")
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # make a slug from product name

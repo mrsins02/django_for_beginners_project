@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block body_content %}
+    <div class="container m-5">
+        <form method="post">
+            {% csrf_token %}
+            <div class="col-lg-8 col-md-8">
+                <h3 class="mb-30 title_color">Create Product</h3>
+                <div class="mt-10">
+                    {{ form.as_p }}
+                    <input type="submit" class="genric-btn success" value="Create Product">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
