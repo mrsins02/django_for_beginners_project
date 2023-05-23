@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -13,6 +14,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category.capitalize()
+
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[self.slug])
 
     class Meta:
         verbose_name = "Category"
@@ -31,10 +35,12 @@ class Brand(models.Model):
     def __str__(self):
         return self.brand.capitalize()
 
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[self.slug])
+
     class Meta:
         verbose_name = "Brand"
         verbose_name_plural = "Brands"
-
 
 
 class Product(models.Model):
@@ -46,7 +52,7 @@ class Product(models.Model):
     slug = models.SlugField(db_index=True, editable=False)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
     brand = models.ForeignKey(to="Brand", on_delete=models.CASCADE)
-    price = models.PositiveIntegerField(max_length=8, default="0")
+    price = models.CharField(max_length=8, default="0")
     count = models.PositiveIntegerField(default=0)
     sex = models.CharField(choices=sex_choices, default="male", max_length=16)
     is_available = models.BooleanField(default=True)
@@ -59,6 +65,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name.capitalize()
+
+    def get_absolute_url(self):
+        return reverse("product_detail", args=[self.slug])
 
     class Meta:
         verbose_name = "Product"

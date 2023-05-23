@@ -1,10 +1,9 @@
 from django import forms
 
-from products.models import Product, Category
+from products.models import Product
 
 
 class ProductCreateForm(forms.ModelForm):
-    s = forms.IntegerField(min_value=0)
 
     class Meta:
         model = Product
@@ -19,5 +18,7 @@ class ProductCreateForm(forms.ModelForm):
             "sex": forms.Select(attrs={"class": "single-input"}),
             "description": forms.Textarea(attrs={"class": "single-input", "placeholder": "Product Description"}),
         }
+
+
 
 
