@@ -57,6 +57,8 @@ class Product(models.Model):
     sex = models.CharField(choices=sex_choices, default="male", max_length=16)
     is_available = models.BooleanField(default=True)
     description = models.TextField(blank=True, null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    date_modified = models.DateTimeField(auto_now=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # make a slug from product name
@@ -72,3 +74,4 @@ class Product(models.Model):
     class Meta:
         verbose_name = "Product"
         verbose_name_plural = "Products"
+        ordering = ("date_created",)

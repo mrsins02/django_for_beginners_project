@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block title %}
+    Delete {{ product.name|capfirst }}
+{% endblock %}
+
+{% block body_content %}
+    <div class="container text-center" style="margin-top: 50px;margin-bottom: 200px;">
+        <form method="post">
+            {% csrf_token %}
+            <h3 style="margin-bottom: 30px;">Are you sure you want delete this product?</h3>
+            <button type="submit" class="genric-btn danger">Delete Product</button>
+        </form>
+
+    </div>
+{% endblock %}
