@@ -1,3 +1,4 @@
+from django.core import validators
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -52,7 +53,8 @@ class Product(models.Model):
     slug = models.SlugField(db_index=True, editable=False)
     category = models.ForeignKey(to="Category", on_delete=models.CASCADE)
     brand = models.ForeignKey(to="Brand", on_delete=models.CASCADE)
-    price = models.CharField(max_length=8, default="0")
+    price = models.DecimalField(max_digits=12, decimal_places=2, default=0,
+                                validators=[validators.MinValueValidator(0)])
     count = models.PositiveIntegerField(default=0)
     sex = models.CharField(choices=sex_choices, default="male", max_length=16)
     is_available = models.BooleanField(default=True)
