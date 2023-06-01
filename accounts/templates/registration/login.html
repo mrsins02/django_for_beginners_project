@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block body_content %}
+    <div class="container align-center">
+        <div class="row" style="margin: 100px;">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4 text-center">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn primary" value="Login">
+                </form>
+                <br>
+                <p>Don't have an account? <a href="{% url "sign_up" %}" class="text-primary">SignUp</a></p>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+    </div>
+{% endblock %}
