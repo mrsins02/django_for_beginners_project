@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<p>hhlkhsalfkhlsak</p>
-{{ user }}
-{{ useremail }}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}
+    SignUp
+{% endblock %}
+
+{% block body_content %}
+    <div class="container">
+        <div class="row" style="margin: 100px;">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <form method="post" id="signup-form">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" class="btn primary" value="SignUp">
+                </form>
+                <br>
+                <p>Have an account? <a href="{% url "login" %}" class="text-primary">Login To Your Account</a></p>
+            </div>
+            <div class="col-md-2">
+            </div>
+        </div>
+    </div>
+{% endblock %}
