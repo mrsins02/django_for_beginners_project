@@ -6,11 +6,13 @@ from .models import CustomUser
 class CustomUserCreationForm(UserCreationForm):
     class Meta(UserCreationForm):
         model = CustomUser
-        fields = UserCreationForm.Meta.fields
+        fields = UserCreationForm.Meta.fields + ("email",)
+        widgets = {
+            "email": forms.EmailInput(attrs={"class": "single-input"}),
+        }
 
 
-
-# class CustomUserChangeForm(UserChangeForm):
-#     class Meta(UserChangeForm):
-#         model = CustomUser
-#         fields = UserChangeForm.Meta.fields + ("sex", "age", "phone", "address")
+class CustomUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm):
+        model = CustomUser
+        fields = UserChangeForm.Meta.fields
