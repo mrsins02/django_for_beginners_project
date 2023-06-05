@@ -15,8 +15,8 @@
             <div class="col-md-8">
                 <form method="post" id="signup-form">
                     {% csrf_token %}
-                    {% crispy form %}
-                    <input type="submit" class="btn primary" value="SignUp">
+                    {{ form|crispy }}
+                    <button type="submit" class="btn primary">SignUp</button>
                 </form>
                 <br>
                 <p>Have an account? <a href="{% url "login" %}" class="text-primary">Login To Your Account</a></p>

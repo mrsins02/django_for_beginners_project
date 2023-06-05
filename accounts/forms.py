@@ -19,3 +19,11 @@ class CustomUserChangeForm(UserChangeForm):
     class Meta(UserChangeForm):
         model = CustomUser
         fields = "__all__"
+
+
+class DashboardUserChangeForm(UserChangeForm):
+    password = forms.CharField(widget=forms.TextInput(attrs={"type": "hidden"}), required=False)
+
+    class Meta:
+        model = CustomUser
+        fields = ("username", "email", "first_name", "last_name", "phone", "age", "sex", "address",)
