@@ -8,18 +8,19 @@
 {% block body_content %}
     <div class="container align-center">
         <div class="row" style="margin: 100px;">
-            <div class="col-md-4">
+            <div class="col-md-3">
             </div>
-            <div class="col-md-4 text-center">
+            <div class="col-md-6 text-center">
                 <form method="post">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <input type="submit" class="btn primary" value="Login">
                 </form>
                 <br>
+                <p>Forgot your password? <a href="{% url "password_reset" %}" class="text-primary">Reset Your Password</a></p>
                 <p>Don't have an account? <a href="{% url "sign_up" %}" class="text-primary">SignUp</a></p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
             </div>
         </div>
     </div>
