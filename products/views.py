@@ -1,10 +1,10 @@
-from django.shortcuts import get_object_or_404
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, TemplateView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.http import HttpResponse
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import get_object_or_404, render
+from django.views.generic import ListView, DetailView, TemplateView,CreateView, UpdateView, DeleteView, FormView
 
 from .models import Product
-from .forms import ProductCreateForm, ProductUpdateForm
+from .forms import ProductCreateForm, ProductUpdateForm, ProductFormSet
 
 
 class ProductListView(ListView):
@@ -33,16 +33,18 @@ class ProductUpdateView(UpdateView):
     model = Product
     form_class = ProductUpdateForm
 
-    def get_object(self, queryset=None):
-        slug = self.kwargs.get("slug")
-        return get_object_or_404(Product, slug=slug)
-
 
 class ProductDeleteView(DeleteView):
     template_name = "products/product-delete.html"
     model = Product
     success_url = reverse_lazy("product_dashboard")
 
-    def get_object(self, queryset=None):
-        slug = self.kwargs.get("slug")
-        return get_object_or_404(Product, slug=slug)
+
+class PoductPictureUpdateView(UpdateView):
+    template_name = "products/picture-update.html"
+    model = Product
+    form_class = ProductFormSet
+
+    def get_success_url(self):
+        slug = self.get_object().slug
+        return reverse("product_detail", args=[slug, ])

@@ -1,7 +1,19 @@
+import os.path
+
 from django.core import validators
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+
+
+def get_ext(filename):
+    ext = os.path.splitext(filename)[1]
+    return ext
+
+
+def upload_dir(instance, filename):
+    ext = get_ext(filename)
+    return f"media/products/{instance.product.category}/{instance.product.slug}/{instance.product.slug}.{ext}"
 
 
 class Category(models.Model):
@@ -42,6 +54,15 @@ class Brand(models.Model):
     class Meta:
         verbose_name = "Brand"
         verbose_name_plural = "Brands"
+
+
+class ProductPicture(models.Model):
+    picture = models.ImageField(upload_to=upload_dir, unique=True)
+    is_main = models.BooleanField(default=False, verbose_name="Main Picture", help_text="Only one picture can be main!")
+    product = models.ForeignKey("Product", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.product.name.capitalize()
 
 
 class Product(models.Model):

@@ -5,11 +5,13 @@ from .views import \
     DashboardView, \
     ProductCreateView, \
     ProductUpdateView, \
-    ProductDeleteView
+    ProductDeleteView, \
+    PoductPictureUpdateView
 
 urlpatterns = [
     path("", ProductListView.as_view(), name="product_list"),
     path("products/create/", ProductCreateView.as_view(), name="product_create"),
+    path("products/update/picture/<slug:slug>/", PoductPictureUpdateView.as_view(), name="product_picture_update"),
     path("products/update/<slug:slug>/", ProductUpdateView.as_view(), name="product_update"),
     path("products/delete/<slug:slug>/", ProductDeleteView.as_view(), name="product_delete"),
     path("products/<slug:slug>/", ProductDetailView.as_view(), name="product_detail"),

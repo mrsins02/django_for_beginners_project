@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Update {{ product.name }}
+{% endblock %}
+
+{% block body_content %}
+    <div class="container m-5">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="col-lg-8 col-md-8">
+                <h3 class="mb-30 title_color">Edit {{ product.name|capfirst }}</h3>
+                <div class="mt-10">
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-warning">Edit Product</button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
