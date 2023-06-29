@@ -1,4 +1,5 @@
-# todo: product picture
+# todo: product picture detail page
+# todo: product picture dashboard
 # todo: product sorting option
 # todo: shop filters
 # todo: category pages
