@@ -92,6 +92,7 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+    is_available = models.BooleanField(default=True)
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         # make a slug from product name

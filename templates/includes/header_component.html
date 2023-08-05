@@ -13,12 +13,7 @@
                         <ul class="right_side">
                             {% if request.user.is_authenticated %}
                                 <li>
-                                    <a href="{% url "product_dashboard" %}">
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{% url "logout" %}">
+                                    <a class="btn btn-danger text-white" href="{% url "logout" %}">
                                         LogOut
                                     </a>
                                 </li>
