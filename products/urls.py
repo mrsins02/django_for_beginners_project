@@ -1,19 +1,11 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
 from .views import \
     ProductListView, \
-    ProductDetailView, \
-    DashboardView, \
-    ProductCreateView, \
-    ProductUpdateView, \
-    ProductDeleteView, \
-    PoductPictureUpdateView
+    ProductDetailView
 
 urlpatterns = [
-    path("", ProductListView.as_view(), name="product_list"),
-    path("products/create/", ProductCreateView.as_view(), name="product_create"),
-    path("products/update/picture/<slug:slug>/", PoductPictureUpdateView.as_view(), name="product_picture_update"),
-    path("products/update/<slug:slug>/", ProductUpdateView.as_view(), name="product_update"),
-    path("products/delete/<slug:slug>/", ProductDeleteView.as_view(), name="product_delete"),
-    path("products/<slug:slug>/", ProductDetailView.as_view(), name="product_detail"),
-    path("dashboard/", DashboardView.as_view(), name="product_dashboard"),
-]
+                  path("", ProductListView.as_view(), name="product_list"),
+                  path("products/<slug:slug>/", ProductDetailView.as_view(), name="product_detail"),
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
