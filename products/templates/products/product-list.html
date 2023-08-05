@@ -54,7 +54,7 @@
                                                 {% if product.image_set.first.image %}
                                                     <img
                                                             class="card-img"
-                                                            src="{{ product.image_set.first.image.url }}"
+                                                            src="{{ product.image_set.first.image.url }}" 
                                                             alt="{{ product.slug }}"/>
                                                 {% else %}
                                                     <img
@@ -99,27 +99,11 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
+                                    {% for category in categories%}
                                     <li>
-                                        <a href="#">Frozen Fish</a>
+                                        <a href="#">{{ category.category }}</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Dried Fish</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fresh Fish</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat Alternatives</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Fresh Fish</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat Alternatives</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Meat</a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </aside>
@@ -130,21 +114,11 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
+                                    {% for brand in brands%}
                                     <li>
-                                        <a href="#">Apple</a>
+                                        <a href="#">{{ brand.brand }}</a>
                                     </li>
-                                    <li>
-                                        <a href="#">Asus</a>
-                                    </li>
-                                    <li class="active">
-                                        <a href="#">Gionee</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Micromax</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Samsung</a>
-                                    </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </aside>

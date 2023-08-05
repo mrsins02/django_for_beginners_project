@@ -304,3 +304,6 @@ migrations/
 *.sqlite3
 *.db-shm
 *.db-wal
+
+# vscode
+.vscode

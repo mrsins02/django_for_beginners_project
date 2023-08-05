@@ -21,10 +21,14 @@ class Category(models.Model):
     category = models.CharField(max_length=72, unique=True)
     slug = models.SlugField(db_index=True, editable=False)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
         # make a slug from category name
         self.slug = slugify(self.category)
-        super(Category, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        super(Category, self).save(
+            force_insert=False, force_update=False, using=None, update_fields=None
+        )
 
     def __str__(self):
         return self.category.capitalize()
@@ -41,10 +45,14 @@ class Brand(models.Model):
     brand = models.CharField(max_length=72, unique=True)
     slug = models.SlugField(db_index=True, editable=False)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
         # make a slug from brand name
         self.slug = slugify(self.brand)
-        super(Brand, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        super(Brand, self).save(
+            force_insert=False, force_update=False, using=None, update_fields=None
+        )
 
     def __str__(self):
         return self.brand.capitalize()
@@ -94,10 +102,14 @@ class Product(models.Model):
     date_modified = models.DateTimeField(auto_now=True)
     is_available = models.BooleanField(default=True)
 
-    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
         # make a slug from product name
         self.slug = slugify(self.name)
-        super(Product, self).save(force_insert=False, force_update=False, using=None, update_fields=None)
+        super(Product, self).save(
+            force_insert=False, force_update=False, using=None, update_fields=None
+        )
 
     def __str__(self):
         return self.name.capitalize()
@@ -123,6 +135,7 @@ class Image(models.Model):
             return mark_safe(f"<img src='{self.image.url}' height='50'/>")
         else:
             return ""
+
     class Meta:
         verbose_name = "Product Image"
         verbose_name_plural = "Products Images"
@@ -133,8 +146,12 @@ class Detail(models.Model):
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     color = models.ForeignKey(Color, on_delete=models.CASCADE)
     count = models.PositiveIntegerField(default=1)
-    price = models.DecimalField(max_digits=12, decimal_places=2, default=0,
-                                validators=[validators.MinValueValidator(0)])
+    price = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        default=0,
+        validators=[validators.MinValueValidator(0)],
+    )
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
