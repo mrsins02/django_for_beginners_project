@@ -1,5 +1,5 @@
-from django.views.generic import ListView, DetailView
-from django.db.models import Prefetch
+from django.views.generic import ListView, DetailView, TemplateView
+from django.db.models import Prefetch, Q
 from .models import Product, Brand, Category, Detail
 
 
@@ -25,6 +25,22 @@ class ProductListView(ListView):
         elif brand := self.kwargs.get("brand"):
             queryset = (
                 Product.objects.filter(brand__slug__iexact=brand, is_available=True)
+                .order_by(ordering)
+                .prefetch_related(
+                    Prefetch(
+                        lookup="detail_set",
+                        queryset=Detail.objects.filter(is_available=True),
+                    )
+                )
+            )
+        elif search := self.request.GET.get("search"):
+            queryset = (
+                Product.objects.filter(
+                    Q(name__contains=search)
+                    | Q(category__category__contains=search)
+                    | Q(brand__brand__contains=search),
+                    is_available=True,
+                )
                 .order_by(ordering)
                 .prefetch_related(
                     Prefetch(
@@ -72,3 +88,7 @@ class ProductDetailView(DetailView):
             )
         )
         return queryset
+
+
+class SearchView(TemplateView):
+    template_name = "products/search.html"

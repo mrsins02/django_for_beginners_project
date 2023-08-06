@@ -76,17 +76,21 @@
                         <div class="col-lg-5 pr-0">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
+                                    <a href="{% url "product_search" %}" class="icons">
                                         <i class="ti-search" aria-hidden="true"></i>
                                     </a>
-                                </li>
 
+                                </li>
                                 <li class="nav-item">
                                     <a href="#" class="icons">
                                         <i class="ti-shopping-cart"></i>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="#" class="icons">
+                                        <i class="ti-heart" aria-hidden="true"></i>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{% if request.user.is_authenticated %}/admin/{% else %}{% url "login" %}{% endif %}"
                                        class="icons">
@@ -94,12 +98,6 @@
                                         <span>{% if request.user.is_authenticated %}
                                             {{ request.user|capfirst }}
                                         {% endif %}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="ti-heart" aria-hidden="true"></i>
                                     </a>
                                 </li>
                             </ul>
