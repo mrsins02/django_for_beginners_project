@@ -81,7 +81,7 @@
                         </ul>
                         <br>
                         <br>
-                        <table class="table">
+                        <table class="table text-center">
                             <thead>
                             <tr>
                                 <th scope="col">Variant</th>
@@ -97,7 +97,7 @@
                                 <tr>
                                     <td>{{ forloop.counter }}</td>
                                     <td>{{ detail.size }}</td>
-                                    <td>{{ detail.color }}</td>
+                                    <td style="background-color: #D1D1D1"><span style="background-color: #D1D1D1;color: {{ detail.color.code }};">{{ detail.color }}</span></td>
                                     <td>{{ detail.count }}</td>
                                     <td>{{ detail.price }}</td>
                                     <td>Add to Cart+</td>
@@ -118,7 +118,6 @@
         </div>
     </div>
     <!--================End Single Product Area =================-->
-
     <!--================Product Description Area =================-->
     <section class="product_description_area">
         <div class="container">

@@ -30,17 +30,19 @@
             <div class="row flex-row-reverse">
                 <div class="col-lg-9">
                     <div class="product_top_bar">
-                        <div class="left_dorp">
-                            <select class="sorting">
-                                <option value="1">Default sorting</option>
-                                <option value="2">Default sorting 01</option>
-                                <option value="4">Default sorting 02</option>
-                            </select>
-                            <select class="show">
-                                <option value="1">Show 12</option>
-                                <option value="2">Show 14</option>
-                                <option value="4">Show 16</option>
-                            </select>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Ordered By
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="?ordering=name">Name</a>
+                                <a class="dropdown-item" href="?ordering=-name">Name(Reverse) </a>
+                                <a class="dropdown-item" href="?ordering=-date_modified">Newest</a>
+                                <a class="dropdown-item" href="?ordering=date_modified">Oldest</a>
+                                <a class="dropdown-item" href="?ordering=-detail__price">Price(From Expensive)</a>
+                                <a class="dropdown-item" href="?ordering=detail__price">Price(From Cheap)</a>
+                            </div>
                         </div>
                     </div>
 
@@ -54,7 +56,7 @@
                                                 {% if product.image_set.first.image %}
                                                     <img
                                                             class="card-img"
-                                                            src="{{ product.image_set.first.image.url }}" 
+                                                            src="{{ product.image_set.first.image.url }}"
                                                             alt="{{ product.slug }}"/>
                                                 {% else %}
                                                     <img
@@ -99,10 +101,10 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    {% for category in categories%}
-                                    <li>
-                                        <a href="#">{{ category.category }}</a>
-                                    </li>
+                                    {% for category in categories %}
+                                        <li>
+                                            <a href="#">{{ category.category }}</a>
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             </div>
@@ -114,10 +116,10 @@
                             </div>
                             <div class="widgets_inner">
                                 <ul class="list">
-                                    {% for brand in brands%}
-                                    <li>
-                                        <a href="#">{{ brand.brand }}</a>
-                                    </li>
+                                    {% for brand in brands %}
+                                        <li>
+                                            <a href="#">{{ brand.brand }}</a>
+                                        </li>
                                     {% endfor %}
                                 </ul>
                             </div>

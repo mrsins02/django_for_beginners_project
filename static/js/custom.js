@@ -309,3 +309,7 @@
 function changeImage(imageUrl) {
     $("#zoomed-image").attr("src", imageUrl)
 }
+
+function orderingOptions(url) {
+    window.location.href="sdafsa";
+}
