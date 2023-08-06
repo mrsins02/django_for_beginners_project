@@ -13,12 +13,7 @@
                         <ul class="right_side">
                             {% if request.user.is_authenticated %}
                                 <li>
-                                    <a href="{% url "product_dashboard" %}">
-                                        Dashboard
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="{% url "logout" %}">
+                                    <a class="btn btn-danger text-white" href="{% url "logout" %}">
                                         LogOut
                                     </a>
                                 </li>
@@ -66,22 +61,6 @@
                                     <a class="nav-link" href="{% url "product_list" %}">Shop</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Blog</a>
-                                </li>
-                                <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
-                                       aria-haspopup="true"
-                                       aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="tracking.html">Tracking</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="elements.html">Elements</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" href="{% url "contact_us" %}">Contact</a>
                                 </li>
                                 <li class="nav-item">
@@ -97,17 +76,21 @@
                         <div class="col-lg-5 pr-0">
                             <ul class="nav navbar-nav navbar-right right_nav pull-right">
                                 <li class="nav-item">
-                                    <a href="#" class="icons">
+                                    <a href="{% url "product_search" %}" class="icons">
                                         <i class="ti-search" aria-hidden="true"></i>
                                     </a>
-                                </li>
 
+                                </li>
                                 <li class="nav-item">
                                     <a href="#" class="icons">
                                         <i class="ti-shopping-cart"></i>
                                     </a>
                                 </li>
-
+                                <li class="nav-item">
+                                    <a href="#" class="icons">
+                                        <i class="ti-heart" aria-hidden="true"></i>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="{% if request.user.is_authenticated %}/admin/{% else %}{% url "login" %}{% endif %}"
                                        class="icons">
@@ -115,12 +98,6 @@
                                         <span>{% if request.user.is_authenticated %}
                                             {{ request.user|capfirst }}
                                         {% endif %}</span>
-                                    </a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a href="#" class="icons">
-                                        <i class="ti-heart" aria-hidden="true"></i>
                                     </a>
                                 </li>
                             </ul>
