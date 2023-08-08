@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from pages.models import Setting, Banner
+
+
+admin.site.register(Setting)
+admin.site.register(Banner)
