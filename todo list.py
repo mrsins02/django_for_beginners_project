@@ -1,7 +1,4 @@
 # todo: shop filters
-# todo: site infos model
-# todo: contact form
-# todo: complete contact page
 # todo: banner component
 # todo: home page products
 # todo: visit counter option
